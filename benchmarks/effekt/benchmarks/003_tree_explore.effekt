@@ -85,7 +85,7 @@ def main() = commandLineArgs() match {
     case Nil() => println(sumPaths(makeTree(16)))
     case Cons(x, Nil()) => toInt(x) match {
         case None() => println("Unexpected non-integer '" ++ show(x) ++ "'")
-        case Some(i) => println(sumPaths(makeTree(4)))
+        case Some(i) => println(sumPaths(makeTree(i)))
     }
     case other => println("Expects zero or one argument, not '" ++ show(size(other)) ++ "'")
 }
