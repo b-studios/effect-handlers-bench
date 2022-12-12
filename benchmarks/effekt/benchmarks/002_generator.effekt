@@ -1,6 +1,10 @@
 // Jonathan Frech, 2022-08-17, 2022-08-18, 2022-08-25
 // adapted from: https://raw.githubusercontent.com/effect-handlers/effect-handlers-bench/a61925f19c60600cd0bdaf8b3a6b82eea9aefcf0/benchmarks/koka/002_generator/benchmark.kk
 
+import immutable/list
+import immutable/option
+import text/string
+import io/args
 
 // manually transpiled koka
 
@@ -64,8 +68,7 @@ def main() = commandLineArgs() match {
     case Nil() => println(consumer(sumGenerator(makeTree(25)), 0))
     case Cons(x, Nil()) => toInt(x) match {
         case None() => println("Unexpected non-integer '" ++ show(x) ++ "'")
-        case Some(i) => println(countSolutions(i))
+        case Some(i) => println(consumer(sumGenerator(makeTree(i)), 0))
     }
     case other => println("Expects zero or one argument, not '" ++ show(size(other)) ++ "'")
 }
-
