@@ -2,6 +2,22 @@ DOCKERHUB=effecthandlers/effect-handlers
 
 all: bench_eff bench_hia bench_koka bench_links bench_ocaml
 
+# Effekt
+sys_effekt:
+	docker build -t $(DOCKERHUB):effekt systems/effekt
+
+bench_effekt: sys_effekt
+	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):effekt \
+		make -C /source/benchmarks/effekt
+
+ci_bench_effekt: sys_effekt
+	docker run -v $(shell pwd):/source $(DOCKERHUB):effekt \
+		make -C /source/benchmarks/effekt
+
+ci_test_effekt:
+	docker run -v $(shell pwd):/source $(DOCKERHUB):effekt \
+		make -C /source/benchmarks/eff ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+
 # Eff in ocaml
 sys_eff:
 	docker build -t $(DOCKERHUB):eff systems/eff
