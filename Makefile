@@ -16,7 +16,7 @@ ci_bench_effekt: sys_effekt
 
 ci_test_effekt:
 	docker run -v $(shell pwd):/source $(DOCKERHUB):effekt \
-		make -C /source/benchmarks/eff ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+		make -C /source/benchmarks/effekt ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
 
 # Eff in ocaml
 sys_eff:
